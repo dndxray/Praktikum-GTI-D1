@@ -1,0 +1,14 @@
+PENJELASAN LENGAN BERGERAK
+
+Program ini membuat simulasi lengan robot dua bagian, yaitu lengan atas dan lengan bawah. Pergerakan lengan dikendalikan oleh dua variabel utama, yaitu shoulder untuk bahu dan elbow untuk siku. Konsep utama yang dipakai adalah transformasi hierarki, di mana setiap bagian objek mengikuti transformasi dari bagian sebelumnya.
+
+Proses dari fungsi display: 
+sistem membersihkan layar dan menyimpan kondisi awal matriks transformasi menggunakan glPushMatrix. Lalu objek digeser ke posisi bahu dengan glTranslatef, kemudian diputar berdasarkan nilai shoulder menggunakan glRotatef. Setelah itu, sistem menggeser kembali posisi agar rotasi terjadi pada titik sambungan bahu, bukan di pusat objek.
+
+Setelah posisi bahu terbentuk, program menggambar lengan atas menggunakan glutWireCube yang diperbesar dengan glScalef agar menyerupai bentuk lengan. Setelah itu, kondisi transformasi disimpan lagi menggunakan glPushMatrix untuk memisahkan bagian lengan atas dan bawah.
+
+Selanjutnya, posisi digeser ke ujung lengan atas untuk menentukan titik siku. Di titik ini dilakukan rotasi berdasarkan nilai elbow, lalu digeser lagi agar rotasi terjadi pada sendi siku. Setelah itu, lengan bawah digambar dengan cara yang sama seperti lengan atas.
+
+Fungsi glPushMatrix dan glPopMatrix sangat penting untuk menjaga agar setiap bagian lengan tidak saling mempengaruhi. sehingga rotasi bahu tidak merusak posisi siku, dan rotasi siku tetap mengikuti posisi lengan atas.
+
+tombol s/S mengubah bahu, sedangkan e/E mengubah siku. Setiap perubahan langsung memanggil glutPostRedisplay agar tampilan diperbarui. Hasil akhirnya adalah simulasi lengan robot yang  bergerak seperti struktur lengan manusia.
